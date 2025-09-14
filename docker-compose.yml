@@ -3,8 +3,8 @@ version: '3.8'
 services:
   # FastAPI Application
   app:
-    build: .
-    container_name: singhaditya4:evently-app
+    image: singhaditya4:evently-app
+    container_name: evently-app
     restart: unless-stopped
     environment:
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}

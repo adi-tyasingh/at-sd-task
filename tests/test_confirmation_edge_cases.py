@@ -403,3 +403,4 @@ class TestConfirmationEdgeCases:
         assert len(booking["seats"]) == 2
         assert "A-1" in booking["seats"]
         assert "A-2" in booking["seats"]
+

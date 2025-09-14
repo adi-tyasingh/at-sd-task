@@ -356,3 +356,4 @@ class TestAnalytics:
             f"/events/{event['event_id']}/bookings/analytics?state=invalid"
         )
         assert response.status_code == 200  # Should return empty list
+

@@ -1,6 +1,7 @@
-from pydantic import BaseModel
-from typing import List, Dict, Any, Optional
 from datetime import datetime
+from typing import Any, Dict, List, Optional
+
+from pydantic import BaseModel
 
 
 class EventCreate(BaseModel):
@@ -177,7 +178,7 @@ class ComprehensiveEventAnalytics(BaseModel):
     artists: List[str]
     tags: List[str]
     description: str
-    
+
     # Seat Overview
     total_seats: int
     seats_available: int
@@ -185,26 +186,26 @@ class ComprehensiveEventAnalytics(BaseModel):
     seats_booked: int
     seats_sold: int
     capacity_utilization: float
-    
+
     # Booking Overview
     total_bookings: int
     successful_bookings: int
     cancelled_bookings: int
     hold_attempts: int
     failed_holds: int
-    
+
     # Revenue Overview
     revenue_generated: float
     average_booking_value: float
     currency: str = "USD"
     revenue_by_seat_type: dict
-    
+
     # Timing
     last_booking_time: str = None
-    
+
     # Detailed Data
     booking_analytics: List[BookingAnalytics]
-    
+
     # Performance Metrics
     booking_success_rate: float
     hold_success_rate: float

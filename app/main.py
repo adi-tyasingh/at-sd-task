@@ -1,9 +1,12 @@
+import os
+
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
-from dotenv import load_dotenv
+
 from app.database import db_client
-from app.routers import venue, venue_seat, event, event_seat, user, seat_holding, seat_booking, analytics
+from app.routers import (analytics, event, event_seat, seat_booking,
+                         seat_holding, user, venue, venue_seat)
 
 # Load environment variables
 load_dotenv()
@@ -12,7 +15,7 @@ load_dotenv()
 app = FastAPI(
     title="Evently - Event Booking Platform",
     description="A scalable event booking platform for managing venues, events, and seat reservations",
-    version="1.0.0"
+    version="1.0.0",
 )
 
 # Add CORS middleware
@@ -34,14 +37,12 @@ app.include_router(seat_booking.router)
 app.include_router(analytics.router)
 app.include_router(user.router)
 
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
-    return {
-        "status": "healthy",
-        "service": "Evently",
-        "version": "1.0.0"
-    }
+    return {"status": "healthy", "service": "Evently", "version": "1.0.0"}
+
 
 @app.get("/")
 async def root():
@@ -49,19 +50,22 @@ async def root():
     return {
         "message": "Welcome to Evently - Event Booking Platform",
         "docs": "/docs",
-        "health": "/health"
+        "health": "/health",
     }
+
 
 @app.get("/db-test")
 async def test_database():
     """Test DynamoDB connection"""
     return db_client.test_connection()
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(
         "app.main:app",
         host=os.getenv("HOST", "0.0.0.0"),
         port=int(os.getenv("PORT", 8000)),
-        reload=os.getenv("DEBUG", "False").lower() == "true"
+        reload=os.getenv("DEBUG", "False").lower() == "true",
     )

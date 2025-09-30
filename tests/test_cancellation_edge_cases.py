@@ -414,3 +414,5 @@ class TestCancellationEdgeCases:
         # Should still work as booking_id is in path
         assert cancel_response.status_code == 200
 
+
+

@@ -404,3 +404,5 @@ class TestConfirmationEdgeCases:
         assert "A-1" in booking["seats"]
         assert "A-2" in booking["seats"]
 
+
+
